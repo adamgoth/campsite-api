@@ -10,6 +10,8 @@ var campsiteSchema = new mongoose.Schema({
 var Campsite = mongoose.model('Campsite', campsiteSchema);
 mongoose.connect('mongodb://apg:apg@ds023468.mlab.com:23468/apgtestdb');
 
+var port = process.env.PORT || 3000;
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extended": false}));
 
@@ -33,5 +35,4 @@ router.get('/campsites/:state', function(req, res) {
 
 app.use('/api', router);
 
-app.listen(3000);
-console.log("Listening to PORT 3000");
+app.listen(port);
