@@ -15,10 +15,15 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extended": false}));
 
-var router = express.Router();
+//var router = express.Router();
+
+//welcome message on root
+app.get('/', function(req, res) {
+  res.json({message: "Welcome to the campsites API"})
+})
 
 //get all
-router.get('/campsites', function(req, res) {
+app.get('/campsites', function(req, res) {
   Campsite.find({}, function(err, campsite) {
     if (err) throw err;
     res.json(campsite);
@@ -26,13 +31,22 @@ router.get('/campsites', function(req, res) {
 });
 
 //get by state
-router.get('/campsites/:state', function(req, res) {
+app.get('/campsites/:state', function(req, res) {
   Campsite.find({state: req.params.state}, function(err, campsite) {
     if (err) throw err;
     res.json(campsite);
   });
 });
 
-app.use('/api', router);
+//get by id
+app.get('/campsites/:id', function(req, res) {
+  Campsite.findById(req.params.id, function(err, campsite) {
+    if (err) throw err;
+    res.json(campsite);
+  });
+});
+
+//app.use('/api', router);
 
 app.listen(port);
+console.log(`Listening on PORT:${port}`);
