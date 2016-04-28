@@ -9,8 +9,9 @@
   "author": "apg",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^4.4.13",
     "body-parser": "^1.13.3",
-    "express": "^4.13.3"
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "mongoose": "^4.4.13"
   }
 }
