@@ -6,7 +6,7 @@ var bodyParser = require("body-parser");
 //mongoose stuffs
 var mongoose = require('mongoose');
 var campsiteSchema = new mongoose.Schema({
-  //schema shit
+  campsite: String,
 });
 var Campsite = mongoose.model('Campsite', campsiteSchema);
 mongoose.connect('mongodb://apg:apg@ds023468.mlab.com:23468/apgtestdb');
@@ -32,8 +32,9 @@ app.get('/campsites', function(req, res) {
   });
 });
 
+
 //get by state
-app.get('/campsites/:state', function(req, res) {
+app.get('/campsites/state/:state', function(req, res) {
   Campsite.find({state: req.params.state}, function(err, campsite) {
     if (err) throw err;
     res.json(campsite);
