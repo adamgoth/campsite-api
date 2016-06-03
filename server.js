@@ -12,7 +12,8 @@ var reviewSchema = new mongoose.Schema({
   user: String,
   review: String,
   rating: Number,
-  campsite_id: String
+  campsite_id: String,
+  created_on: Date
 });
 var Campsite = mongoose.model('Campsite', campsiteSchema);
 var Review = mongoose.model('Review', reviewSchema);
@@ -72,6 +73,7 @@ app.post('/reviews', function(req, res) {
   review.review = req.body.review;
   review.rating = req.body.rating;
   review.campsite_id = req.body.campsite_id;
+  review.created_on = req.body.created_on;
 
   review.save(function(err) {
     if (err) throw err;
